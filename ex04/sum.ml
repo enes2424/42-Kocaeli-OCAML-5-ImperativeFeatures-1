@@ -26,3 +26,24 @@ let () =
   let result8 = add_five 3.0 in
   Printf.printf "Partial application: add_five 3.0 = %.2f\n" result8;
 
+  let numbers = [1.0; 2.0; 3.0; 4.0; 5.0] in
+  let add_ten = sum 10.0 in
+  let results = List.map add_ten numbers in
+  Printf.printf "Adding 10.0 to [1.0; 2.0; 3.0; 4.0; 5.0]: [";
+  List.iteri (fun i x -> 
+    Printf.printf "%.1f%s" x (if i < List.length results - 1 then "; " else "")
+  ) results;
+  Printf.printf "]\n";
+
+  let double x = sum x x in
+  let result9 = double 7.5 in
+  Printf.printf "Double 7.5 (using sum): %.2f\n" result9;
+
+  let operations = [sum 1.0; sum 2.0; sum 3.0] in
+  let base_value = 10.0 in
+  Printf.printf "Applying different additions to %.1f:\n" base_value;
+  List.iteri (fun i op ->
+    let result = op base_value in
+    Printf.printf "  Operation %d: %.1f\n" (i+1) result
+  ) operations
+

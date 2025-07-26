@@ -1,13 +1,13 @@
 let read_jokes_from_file filename =
-  let ic = open_in filename in
-  let rec read_lines acc =
+  let file = open_in filename in
+  let rec read_lines list =
     try
-      let line = input_line ic in
-      read_lines (line :: acc)
+      let line = input_line file in
+      read_lines (line :: list)
     with
     | End_of_file -> 
-        close_in ic;
-        List.rev acc
+        close_in file;
+        List.rev list
   in
   let lines = read_lines [] in
   Array.of_list lines
